@@ -20,7 +20,7 @@ def get_successors(graph, node_state):
         new_node = data_structure.Node(new_state_name,new_state_value, new_level, parent=node_state)
         
         successors += [new_node]
-    
+
     return successors
 
 def search(graph, node_start):
@@ -33,7 +33,7 @@ def search(graph, node_start):
             min_len = len(name)
     
     while not found:
-        successors, found = searching(graph,successors, lambda x: len(x) == min_len)
+        successors, found = searching(graph,successors, lambda x: len(x.get_name()) == min_len)
         
         if len(successors) == 0:
             print('= '*25)
@@ -60,7 +60,7 @@ def searching(graph, successors, stop_criterion):
         next_succ = get_successors(graph,succ)
         for each_succ in next_succ:
             next_successors += [each_succ]
-            if stop_criterion(each_succ.get_name()):                
+            if stop_criterion(each_succ):                
                 found = True
                 return [each_succ], found
                         
